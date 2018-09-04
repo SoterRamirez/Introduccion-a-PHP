@@ -431,3 +431,12 @@ $a !== $b|	No-identidad|	TRUE si $a no es idéntica a $b.
 
 
 El operador + devuelve el array del lado derecho añadido al array del lado izquierdo; para las claves que existan en ambos arrays, serán utilizados los elementos del array de la izquierda y serán ignorados los elementos correspondientes del array de la derecha.
+
+# Funciones
+
+Las funciones se denotan en PHP por la palabra reservada Function y nos servirán para llamar y reutilizar código en nuestros proyectos.
+
+Cuando trabajemos con funciones es muy importante cuidar el scope (alcance) de las variables pues, algunas podrán ser accesadas y otras no.
+
+Las funciones en PHP pueden o no regresar un dato particular. Si deseamos hacerlo podemos indicarlo con la palabra reservada return.
+
