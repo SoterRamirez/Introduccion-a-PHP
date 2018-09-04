@@ -187,3 +187,17 @@ Es un valor especial que se usa para representar una variable sin valor. http://
 $a = null; 
 ?>
 ```
+
+# Arreglos
+Almacenamos datos en una variable, ahora trataremos de almacenar más datos en una misma variable.
+
+Estas variables que almacenan más de un dato se conocen como Arreglos y su sintáxis se va a indicar con [ ] (corchetes).
+
+PHP utiliza índices para localizar a los elementos dentro de la variable.
+
+La estructura de Arreglos en PHP es conocida como mapa, lo que quiere decir que tiene una composición de llave valor.
+
+Además un arreglo puede contener más arreglos y cada uno de ellos seguirá la misma estructura.
+
+Algo que debes saber es que en PHP podrás almacenar diferentes tipos de datos en un mismo arreglo.
+
