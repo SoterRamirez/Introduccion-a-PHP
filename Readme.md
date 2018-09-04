@@ -460,3 +460,85 @@ Las diferencias más radicales son que:
     - Si el archivo no existe, tambien mostrará warning.
 - **require**, agrega un archivo las veces que se llame a la funcion sin importar si estaba agregado o no. PERO, si el archivo no existe, arroja un error fatal.
 require_once, permite agregar el archivo externo una sola vez. Si se repite, arroja error fatal y si el archivo no existe, tambien arroja error fatal y termina la ejecución del programa.
+
+# Programación Orientada a Objetos
+La programación orientada a objetos nos ayudará a estructurar mejor nuestros programas. PHP a partir de su versión 5 tiene implementaciones orientadas a objetos, lo que lo hace tener código más reutilizable y mantenible.
+
+Una clase es una plantilla o definición de algo. Y una instacia es la representación concreta de la clase.
+
+Encapsulamiento será el nivel de visibilidad que querramos darle a alguna variable, para ello podemos utilizar los modificadores de acceso, private, public, protected, etc.
+
+Con la palabra reservada `this` estaremos haciendo referencia a la variable que pertenece a la clase.
+
+## Clase y objetos
+Una clase define los datos y la lógica de un objeto. La lógica se divide en funciones (métodos) y variables (propiedades).
+
+Para definir una propiedad:
+```
+class Coche {
+    public $color;
+}
+```
+Para definir un método:
+```
+class Coche {
+    public function getColor()
+    {
+        // Contenido de la función
+    }
+}
+```
+Para crear un objeto hay que instanciar una clase:
+```
+class Coche {
+ // Contenido de la clase
+}
+
+$miCoche = new Coche(); // Objeto
+```
+La clase es como una plantilla que define características y funciones. El objeto agrupa los datos de la clase y permite utilizarlos desde una unidad.
+
+Podemos definir las características de un coche de la siguiente forma:
+
+```
+class Coche {
+    public $color;
+    public $potencia;
+    public $marca;
+}
+
+$miCoche = new Coche();
+$miCoche->color = 'rojo';
+$miCoche->potencia = 120;
+$miCoche->marca = 'audi';
+```
+
+De momento sólo hemos definido propiedades del objeto. Si queremos mostrar alguna característica ahora:
+
+```
+echo 'Color del coche: ' . $miCoche->color; // Muestra Color del coche: rojo
+```
+Ahora vamos a definir un método que devuelve una propiedad:
+```
+class Coche {
+    //...
+
+    public function getColor()
+    {
+        return $this->color;
+    }
+}
+```
+El método getColor() nos permite devolver el color del objeto instanciado. La variable $this se puede utilizar en cualquier método, y hace referencia al objeto que hemos instanciado, en este caso $miCoche. Podemos obtener el mismo resultado que antes para mostrar el color del coche pero ahora utilizando un método para mostrar la propiedad color:
+```
+//...
+echo 'Color del coche: ' . $miCoche->getColor();
+```
+Las propiedades pueden tener valores por defecto:
+```
+class Coche {
+    public $color = 'rojo';
+//...
+}
+```
+De esta forma siempre que se instancie un objeto de la clase Coche, éste será de color rojo a no ser que se modifique después.

@@ -1,24 +1,12 @@
 <?php
-include('jobs.php');
+require_once('jobs.php');
 
 $name = 'Soter Ramirez';
 $limitMonths = 2000;
-
-
-function getDuration($months)
-{
-  $years = floor($months / 12);
-  $extraMonths = $months % 12;
-
-  return "$years years $extraMonths months";
-}
-
-
-
 ?>
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <!-- Required meta tags -->
@@ -46,7 +34,7 @@ function getDuration($months)
           <li>Mail: soter@mail.com</li>
           <li>Phone: 1234567890</li>
           <li>LinkedIn: https://linkedin.com</li>
-          <li>Twitter: @soterramirez</li>
+          <li>Twitter: @SoterRamirez</li>
         </ul>
       </div>
     </div>
@@ -68,7 +56,7 @@ function getDuration($months)
             $totalMonths = 0;
             for ($idx = 0; $idx < count($jobs); $idx++) {
               // $totalMonths = $totalMonths + $jobs[$idx]['months'];
-              $totalMonths += $jobs[$idx]['months'];
+              $totalMonths += $jobs[$idx]->months;
               if ($totalMonths > $limitMonths) {
                 break;
               }
