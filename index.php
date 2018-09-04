@@ -1,18 +1,33 @@
 <?php
 $name = 'Soter Ramírez';
+$limitMonts = 12;
 $jobs = [
   [
     'title' => 'PHP Developer',
-    'description' => 'This is an awesome job!!!'
+    'description' => 'This is an awesome job!!!',
+    'visible' => true,
+    'months' => 6
   ],
   [
     'title' => 'Python Dev',
+    'visible' => true,
+    'months' => 3
   ],
   [
-    'title' => 'HTML 5',
+    'title' => 'Node',
+    'visible' => true,
+    'months' => 5
   ],
   [
-    'title' => 'Devops'
+    'title' => 'Frontend Dev',
+    'visible' => true,
+    'months' => 1
+
+  ],
+  [
+    'title' => 'Devops',
+    'visible' => true,
+    'months' => 6
   ]
 ];
 
@@ -73,10 +88,20 @@ $jobs = [
           <h3 class="border-bottom-gray" >Work Experience</h3>
           <ul>
             <?php
-            for($idx = 0;$idx < count($jobs); $idx++) {
+            $totalMonths = 0;
+            for ($idx = 0; $idx < count($jobs); $idx++) {
+              $totalMonths += $jobs[$idx]['months'];
+              //Llamar una condición , break es salir, terminar
+              if ($totalMonths > $limitMonts) {
+                break;
+              }
+              if ($jobs[$idx]['visible'] != true) {
+                continue;
+              }
               echo '<li class="work-position">';
               echo '<h5>' . $jobs[$idx]['title'] . '</h5>';
               echo '<p>' . $jobs[$idx]['description'] . '</p>';
+              echo '<p>' . $totalMonths . '</p>';
               echo '<strong>Achievements:</strong>';
               echo '<ul>';
               echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
