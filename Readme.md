@@ -22,6 +22,15 @@ Que no es!!
 
 XAMMP - [Desargar](https://www.apachefriends.org/es/index.html)
 
+
+VSCode 
+
+[Keyboard shortcuts for macOS](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.pdf)
+
+[Keyboard shortcuts for Windows ](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf)
+
+[Keyboard shortcuts for Linux](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-linux.pdf)
+
 # Template que usaremos
 
 Favor de ver la carpeta: **Template**
@@ -201,3 +210,12 @@ Además un arreglo puede contener más arreglos y cada uno de ellos seguirá la 
 
 Algo que debes saber es que en PHP podrás almacenar diferentes tipos de datos en un mismo arreglo.
 
+# Condicionales y Ciclos
+Las condiciones nos permiten tomar decisiones en el código, si se cumple la condición entonces se ejecutarán ciertas instrucciones sino se cumple se ejecutarán otras. Estas se denotan por la instrucción if.
+
+Los ciclos funcionan de la mano con las condiciones, en este caso si se cumple la instrucción se estará ejecutando repetidas veces una instrucción dada.
+
+Hemos agregado los jobs de forma manual accediendo al arreglo a través de sus índices, hacer esto podría traer errores y no podríamos controlarlo si tuvieramos muchos jobs. Ahora veamos una mejor forma de hacerlo con ciclos.
+
+- El primero que tenemos es Do While que va a involucrar la inicialización de variables y condiciones.
+- El segundo que veremos es For que es una forma más simplificada de usar todos los elementos que componen los ciclos.

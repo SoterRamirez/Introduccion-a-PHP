@@ -1,5 +1,5 @@
 <?php
-$name = 'Soter Ramirez';
+$name = 'Soter Ramírez';
 $jobs = [
   [
     'title' => 'PHP Developer',
@@ -9,14 +9,24 @@ $jobs = [
     'title' => 'Python Dev',
   ],
   [
+    'title' => 'HTML 5',
+  ],
+  [
     'title' => 'Devops'
   ]
 ];
 
+// $var1 = 1;
+// if($var1 > 2) {
+//     echo 'es mayor que 2';
+// } else {
+//     echo 'no es mayor que 2';
+// }
+
 ?>
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <!-- Required meta tags -->
@@ -26,7 +36,7 @@ $jobs = [
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
     crossorigin="anonymous">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="Template/style.css">
 
   <title>Resume</title>
 </head>
@@ -41,7 +51,7 @@ $jobs = [
         <h1><?php echo $name; ?></h1>
         <h2>PHP Developer</h2>
         <ul>
-          <li>Mail: soter@mail.com</li>
+          <li>Mail: Soter@mail.com</li>
           <li>Phone: 1234567890</li>
           <li>LinkedIn: https://linkedin.com</li>
           <li>Twitter: @SoterRamirez</li>
@@ -62,36 +72,20 @@ $jobs = [
         <div>
           <h3 class="border-bottom-gray" >Work Experience</h3>
           <ul>
-            <li class="work-position">
-              <h5><?php echo $jobs[0]['title']; ?></h5>
-              <p><?php echo $jobs[0]['description']; ?></p>
-              <strong>Achievements:</strong>
-              <ul>
-                <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-              </ul>
-            </li>
-            <li class="work-position">
-                <h5><?php echo $jobs[1]['title']; ?></h5>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sapiente sed pariatur sint exercitationem eos expedita eveniet veniam ullam, quia neque facilis dicta voluptatibus. Eveniet doloremque ipsum itaque obcaecati nihil.</p>
-                <strong>Achievements:</strong>
-                <ul>
-                  <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                  <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                  <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                </ul>
-              </li>
-              <li class="work-position">
-                  <h5><?php echo $jobs[2]['title']; ?></h5>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sapiente sed pariatur sint exercitationem eos expedita eveniet veniam ullam, quia neque facilis dicta voluptatibus. Eveniet doloremque ipsum itaque obcaecati nihil.</p>
-                  <strong>Achievements:</strong>
-                  <ul>
-                    <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                    <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                    <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                  </ul>
-                </li>
+            <?php
+            for($idx = 0;$idx < count($jobs); $idx++) {
+              echo '<li class="work-position">';
+              echo '<h5>' . $jobs[$idx]['title'] . '</h5>';
+              echo '<p>' . $jobs[$idx]['description'] . '</p>';
+              echo '<strong>Achievements:</strong>';
+              echo '<ul>';
+              echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
+              echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
+              echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
+              echo '</ul>';
+              echo '</li>';
+            }
+            ?>
           </ul>
         </div>
         <div>
@@ -115,7 +109,7 @@ $jobs = [
                 <h5>Project X</h5>
                 <div class="row">
                     <div class="col-3">
-                        <img id="profile-picture" src="https://ui-avatars.com/api/?name=John+Doe&size=255" alt="">
+                        <img id="profile-picture" src="https://ui-avatars.com/api/?name=Soter+Ramirez&size=255" alt="">
                       </div>
                       <div class="col">
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius earum corporis at accusamus quisquam hic quos vel? Tenetur, ullam veniam consequatur esse quod cum, quam cupiditate assumenda natus maiores aperiam.</p>
@@ -153,7 +147,7 @@ $jobs = [
     </div>
     <div id="resume-footer" class="row">
       <div class="col">
-          Designed by @hectorbenitez
+          Designed by @soterramirez
       </div>
     </div>
   </div>
