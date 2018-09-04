@@ -293,3 +293,141 @@ Pre-incremento, incrementa $a en uno, y luego retorna $a
 Post incremento, retorna $a y luego incrementa $a en uno
 
 Pueden leer esta información en http://php.net/manual/es/language.operators.increment.php
+
+# Operadores
+Antes de continuar hablando de operadores es importante mencionar que existe un concepto conocido como precedencia de operadores el cual nos permitirá saber en qué orden se deben ejecutar los operadores que se encuentren en una sola sentencia.
+
+Por ejemplo, en la sentencia:
+
+1 + 2 * 3
+
+Se ejecutará primero la operación **2 * 3 **
+Luego se ejecutará la suma con 1
+
+Esto es debido a que * tiene más valor en la precedencia que el +.
+
+Una forma sencilla de controlar la precedencia es utilizando () paréntesis, de esta forma podemos forzar el orden que nosotros queramos, por ejemplo (1 + 2) * 3 será una versión diferente y se ejecutará primero la suma y luego la multiplicación.
+
+Te dejo el enlace por si quieres consultar más información al respecto. http://php.net/manual/es/language.operators.precedence.php
+
+Ahora continuemos hablando sobre los tipos de operadores, algunos ya los vimos, pero de igual forma vamos a reforzarlos enfocándonos en los más importantes.
+
+## Operadores aritméticos
+http://php.net/manual/es/language.operators.arithmetic.php
+
+Funcionan para realizar operaciones aritméticas.
+
+Ejemplo | Nombre | Resultado
+| -- | -- | -- |
++$a|	Identidad	| Conversión de $a a int o float según el caso.
+-$a	| Negación |	Opuesto de $a.
+$a + $b	|Adición	| Suma de $a y $b.
+$a - $b	|Sustracción| 	Diferencia de $a y $b.
+$a * $b	|Multiplicación| 	Producto de $a y $b.
+$a / $b	|División| 	Cociente de $a y $b.
+$a % $b	|Módulo	| Resto de $a dividido por $b.
+$a ** $b|	Exponenciación| 	Resultado de elevar $a a la potencia $bésima. Introducido en PHP 5.6.
+
+## Operadores de asignación
+http://php.net/manual/es/language.operators.assignment.php
+
+El operador principal de asignación es el símbolo = (igual). Es importante tener en cuenta que este operador no sirve para comparar, normalmente del lado izquierdo del operador tendremos una variable, y este operador sirve para asignar el resultado de lo que se encuentre a la derecha a dicha variable.
+
+$variable = 5;
+
+Lo que tenemos en la derecha puede ser un valor, otra variable, o el resultado de una operación o función.
+
+También existen otros operadores de asignación que se combinan con operadores aritméticos o para strings y nos permiten simplificar algunas sentencias dentro de PHP. Estos son ejemplos de cómo funcionan:
+```
+$a += $b $a = $a + $b
+$a -= $b $a = $a - $b
+$a *= $b $a = $a * $b
+$a /= $b $a = $a / $b
+$a %= $b $a = $a % $b
+$a .= $b $a = $a . $b
+```
+## Operadores de comparación
+http://php.net/manual/es/language.operators.comparison.php
+
+Nos permiten comparar valores.
+
+Ejemplo | Nombre | Resultado
+| -- | -- | -- |
+$a == $b|	Igual	| TRUE si $a es igual a $b después de la manipulación de tipos.
+$a === $b|	Idéntico |	TRUE si $a es igual a $b, y son del mismo tipo.
+$a != $b|	Diferente |	TRUE si $a no es igual a $b después de la manipulación de tipos.
+$a <> $b|	Diferente	| TRUE si $a no es igual a $b después de la manipulación de tipos.
+$a !== $b |	No idéntico |	TRUE si $a no es igual a $b, o si no son del mismo tipo.
+$a < $b	| Menor que	| TRUE si $a es estrictamente menor que $b.
+$a > $b	| Mayor que |	TRUE si $a es estrictamente mayor que $b.
+$a <= $b|	Menor o igual que	| TRUE si $a es menor o igual que $b.
+$a >= $b |	Mayor o igual que |	TRUE si $a es mayor o igual que $b.
+$a <=> $b	| Nave espacial	| Un integer menor que, igual a, o mayor que cero cuando $a es respectivamente menor que, igual a, o mayor que $b. Disponible a partir de PHP 7.
+$a ?? $b ?? $c |	Fusión de null |	El primer operando de izquierda a derecha que exista y no sea NULL. NULL si no hay valores definidos y no son NULL. Disponible a partir de PHP 7.
+
+## Operadores de incremento/decremento
+http://php.net/manual/es/language.operators.increment.php
+
+Permiten incrementar o decrementar un valor en 1.
+
+Ejemplo | Nombre | Resultado
+| -- | -- | -- |
+++$a	|Pre-incremento|	Incrementa $a en uno, y luego retorna $a.
+$a++	|Post-incremento|	Retorna $a, y luego incrementa $a en uno.
+--$a	|Pre-decremento	|Decrementa $a en uno, luego retorna $a.
+$a--	|Post-decremento|	Retorna $a, luego decrementa $a en uno.
+
+Es muy importante entender cómo afecta el lugar donde se establece el operador, ejemplo:
+```
+$a = 1;
+echo $a++;
+echo $a;
+echo ++$a;
+echo $a;
+```
+imprime
+```
+1
+2
+3
+3
+```
+## Operadores lógicos
+http://php.net/manual/es/language.operators.logical.php
+
+Nos permiten combinar resultados de comparaciones.
+
+Ejemplo | Nombre | Resultado
+| -- | -- | -- |
+$a and $b|	And (y)	|TRUE si tanto $a como $b son TRUE.
+$a or $b|	Or (o inclusivo)	|TRUE si cualquiera de $a o $b es TRUE.
+$a xor $b|	Xor (o exclusivo)	|TRUE si $a o $b es TRUE, pero no ambos.
+! $a	|Not (no)	|TRUE si $a no es TRUE.
+$a && $b|	And (y)	|TRUE si tanto $a como $b son TRUE.
+$a || $b|	Or (o inclusivo)	|TRUE si cualquiera de $a o $b es TRUE.
+
+## Operadores para strings
+Existen 2 operadores para strings el . (punto) que nos permite concatenar cadenas, y el .= que ya fue visto anteriormente y nos permite simplificar la sintaxis de concatenar algo a una misma cadena, ejemplo:
+```
+$var1 = ‘Hola ’ . ‘ php’;
+$var1 .= ‘!!!’;
+echo $var1;
+```
+imprime
+```
+Hola php!!!
+```
+## Operadores para arrays
+http://php.net/manual/es/language.operators.array.php
+
+Ejemplo | Nombre | Resultado
+| -- | -- | -- |
+$a + $b	|Unión	Unión de $a y $b.
+$a == $b|	Igualdad|	TRUE si $a i $b tienen las mismas parejas clave/valor.
+$a === $b|	Identidad|	TRUE si $a y $b tienen las mismas parejas clave/valor en el mismo orden y de los mismos tipos.
+$a != $b|	Desigualdad|	TRUE si $a no es igual a $b.
+$a <> $b|	Desigualdad	|TRUE si $a no es igual a $b.
+$a !== $b|	No-identidad|	TRUE si $a no es idéntica a $b.
+
+
+El operador + devuelve el array del lado derecho añadido al array del lado izquierdo; para las claves que existan en ambos arrays, serán utilizados los elementos del array de la izquierda y serán ignorados los elementos correspondientes del array de la derecha.
