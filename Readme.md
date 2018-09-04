@@ -35,4 +35,28 @@ Para acceder a él lo haremos `localhost:8080/hello.php` porque el servidor abre
 Es importante que un archivo que contiene código php tenga la extensión `.php`.
 Todas las sentencias de código se separarán con un ';' (punto y coma).
 
+# Variables tipos de datos y cadenas 
 
+Una variable puede ser una pequeña cajita en la que puedes almacenar un valor y este lo pueden usar para realizar alguna opración.
+
+Para declararla usarmos el símbolo de `$` y en seguida el nombre, este puede ser un `_` o una `letra`.
+
+PHP no es estáticamente tipado, es decir que no tenemos que decirle qué tipo de dato es esa variable. Además es débilmente tipado porque podemos fácilmente cambiar el tipo de dato, es decir PHP ejecuta una conversión de datos interna.
+
+En PHP Tenemos dos tipos de cadenas, las que son simples y las que son dobles.
+
+Las variables en PHP son dinamicas, es decir que pueden cambiar su valor durante el codigo.
+```
+<?php
+$name = 'Soter Ramirez';
+?>
+```
+```
+ <h1><?php echo $name; ?></h1>
+ ```
+ Para concatenar variables y etiquetas html usamos `.`
+
+Ejemplo
+```
+echo "mi nombre es" . $var_nombre . "<br>";
+```
