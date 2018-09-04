@@ -440,3 +440,23 @@ Cuando trabajemos con funciones es muy importante cuidar el scope (alcance) de l
 
 Las funciones en PHP pueden o no regresar un dato particular. Si deseamos hacerlo podemos indicarlo con la palabra reservada return.
 
+# Agregando archivos externos
+Organizaremos mejor nuestro código para ello lo separaremos en otro archivo llamado jobs.php.
+
+Usaremos la palabra reservada include para hacer que el archivo index incluya el archivo jobs.php, si lo encuentra lo incluye pero si no nos mostrará un warning. Existe otro llamado require que si no lo encuentra nos muestra un error en todo el archivo.
+
+```
+include(‘archivo.php’);
+include_once(‘archivo.php’);
+require(‘archivo.php’);
+require_once(‘archivo.php’);
+```
+Todas estas funciones, cumplen, redundantemente la misma funcion. Incluyen archivo externo, haciendolo formar parte del archivo que estamos ejecutando actualmente.
+
+Las diferencias más radicales son que:
+
+- **include**: agrega un archivo sin importar si ya fué agregado. Si el archivo no existe, solo arroja un warning como mensaje de error.
+- **include_once**, al igual que include, agrega el archivo pero solo una vez. Si el archivo ya había sido agregado anteriormente, arroja un warning.
+    - Si el archivo no existe, tambien mostrará warning.
+- **require**, agrega un archivo las veces que se llame a la funcion sin importar si estaba agregado o no. PERO, si el archivo no existe, arroja un error fatal.
+require_once, permite agregar el archivo externo una sola vez. Si se repite, arroja error fatal y si el archivo no existe, tambien arroja error fatal y termina la ejecución del programa.
