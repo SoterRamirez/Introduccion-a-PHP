@@ -1,47 +1,66 @@
 <?php
-$name = 'Soter Ramírez';
-$limitMonts = 12;
+$name = 'Soter Ramirez';
+$limitMonths = 2000;
 $jobs = [
   [
     'title' => 'PHP Developer',
     'description' => 'This is an awesome job!!!',
     'visible' => true,
-    'months' => 6
+    'months' => 16
   ],
   [
     'title' => 'Python Dev',
-    'visible' => true,
-    'months' => 3
-  ],
-  [
-    'title' => 'Node',
-    'visible' => true,
-    'months' => 5
-  ],
-  [
-    'title' => 'Frontend Dev',
-    'visible' => true,
-    'months' => 1
-
+    'visible' => false,
+    'months' => 14
   ],
   [
     'title' => 'Devops',
     'visible' => true,
-    'months' => 6
+    'months' => 5
+  ],
+  [
+    'title' => 'Node Dev',
+    'visible' => true,
+    'months' => 24
+  ],
+  [
+    'title' => 'Frontend Dev',
+    'visible' => true,
+    'months' => 3
   ]
 ];
 
-// $var1 = 1;
-// if($var1 > 2) {
-//     echo 'es mayor que 2';
-// } else {
-//     echo 'no es mayor que 2';
-// }
+function getDuration($months)
+{
+  $years = floor($months / 12);
+  $extraMonths = $months % 12;
+
+  return "$years years $extraMonths months";
+}
+
+function printJob($job)
+{
+  if ($job['visible'] == false) {
+    return;
+  }
+
+  echo '<li class="work-position">';
+  echo '<h5>' . $job['title'] . '</h5>';
+  echo '<p>' . $job['description'] . '</p>';
+  echo '<p>' . getDuration($job['months']) . '</p>';
+  echo '<strong>Achievements:</strong>';
+  echo '<ul>';
+  echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
+  echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
+  echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
+  echo '</ul>';
+  echo '</li>';
+}
 
 ?>
 
 <!doctype html>
-<html lang="es">
+<html lang="en">
 
 <head>
   <!-- Required meta tags -->
@@ -51,7 +70,7 @@ $jobs = [
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
     crossorigin="anonymous">
-  <link rel="stylesheet" href="Template/style.css">
+  <link rel="stylesheet" href="style.css">
 
   <title>Resume</title>
 </head>
@@ -60,16 +79,16 @@ $jobs = [
   <div class="container">
     <div id="resume-header" class="row">
       <div class="col-3">
-        <img id="profile-picture" src="https://ui-avatars.com/api/?name=Soter+Ramirez&size=255" alt="">
+        <img id="profile-picture" src="https://ui-avatars.com/api/?name=John+Doe&size=255" alt="">
       </div>
       <div class="col">
         <h1><?php echo $name; ?></h1>
         <h2>PHP Developer</h2>
         <ul>
-          <li>Mail: Soter@mail.com</li>
+          <li>Mail: soter@mail.com</li>
           <li>Phone: 1234567890</li>
           <li>LinkedIn: https://linkedin.com</li>
-          <li>Twitter: @SoterRamirez</li>
+          <li>Twitter: @soterramirez</li>
         </ul>
       </div>
     </div>
@@ -90,25 +109,13 @@ $jobs = [
             <?php
             $totalMonths = 0;
             for ($idx = 0; $idx < count($jobs); $idx++) {
+              // $totalMonths = $totalMonths + $jobs[$idx]['months'];
               $totalMonths += $jobs[$idx]['months'];
-              //Llamar una condición , break es salir, terminar
-              if ($totalMonths > $limitMonts) {
+              if ($totalMonths > $limitMonths) {
                 break;
               }
-              if ($jobs[$idx]['visible'] != true) {
-                continue;
-              }
-              echo '<li class="work-position">';
-              echo '<h5>' . $jobs[$idx]['title'] . '</h5>';
-              echo '<p>' . $jobs[$idx]['description'] . '</p>';
-              echo '<p>' . $totalMonths . '</p>';
-              echo '<strong>Achievements:</strong>';
-              echo '<ul>';
-              echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
-              echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
-              echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
-              echo '</ul>';
-              echo '</li>';
+
+              printJob($jobs[$idx]);
             }
             ?>
           </ul>
@@ -134,7 +141,7 @@ $jobs = [
                 <h5>Project X</h5>
                 <div class="row">
                     <div class="col-3">
-                        <img id="profile-picture" src="https://ui-avatars.com/api/?name=Soter+Ramirez&size=255" alt="">
+                        <img id="profile-picture" src="https://ui-avatars.com/api/?name=John+Doe&size=255" alt="">
                       </div>
                       <div class="col">
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius earum corporis at accusamus quisquam hic quos vel? Tenetur, ullam veniam consequatur esse quod cum, quam cupiditate assumenda natus maiores aperiam.</p>
