@@ -580,3 +580,138 @@ Todas las funciones que tienen __ antes del nombre de la función se conocen com
 
 **Uso de __callStatic():**
 - Si el método al que se quiere llamar es static se puede emplear __callStatic(). Este método funciona de la misma forma que __call() pero la sintaxis con la que llamar a los métodos será como a los métodos estáticos.
+
+# Herencia 
+
+Una de las características más importantes de la programación orientada a objetos es la de la herencia. Ésta consiste en que, cuando una clase hereda a otra, obtiene por defecto todas sus propiedades (métodos y atributos), pudiendo definir algunas adicionales. Esto se expresa mediante la palabra clave extends y el nombre de la clase padre, al definir una clase hija que hereda de ésta.
+
+Las propiedades que tengan la visibilidad de privada no serán accesibles desde esta nueva clase, aunque seguirán existiendo dentro del objeto.
+
+En cualquier momento podemos sobreescribir las propiedades del método padre, así como acceder directamente a las mismas mediante la palabra reservada parent .
+
+Las clases pueden ser extensiones de otras clases. La clase extendida o derivada tiene todas las variables y funciones de la clase base (herencia) y lo que se agregue en la definición extendida.
+
+Los métodos de herencia y sus miembros pueden ser evitados, redeclarándolos con el mismo nombre con el que los definió la clase padre, a menos que la clase padre haya definido un método como final.
+
+Es muy conveniente utilizar require_once cuando queremos utilizar herencia e incluir clases que están en otros archivos.
+
+Dentro de nuestra clase hijo podemos sobrescribir algún método del padre, esto es un concepto que conocemos como polimorfismo. Lo que polimorfismo quiere decir es que tendremos un método que va a funcionar de acuerdo con su contexto donde es llamado.
+
+Si tenemos propiedades con la palabra private en nuestra clase padre, desde nuestra clase hija no podremos acceder a esta propiedad, pero si queremos que siga siendo privada y que las clases hijas tengan acceso podemos usar la palabra clave protected.
+
+Ahora que ya tenemos una idea de cómo funciona la herencia de clases, vamos a ver cada uno de los modificadores.
+
+1. Public
+- Las propiedades y métodos public son accesibles desde cualquier parte del script, siendo este modificador el más fácil de usar. En PHP 4 las variables se declaraban con "var" y eran public, pero esa forma de denominarlas está obsoleta y puede generar algunos warnings.
+```
+class Perro
+{
+    public $nombre;
+    public function ladrar(){
+        print "Guau!";
+    }
+}
+class Bulldog extends Perro {
+    public function ladrar(){
+        print "Woof!";
+    }
+}
+$cachorro = new Bulldog();
+$cachorro->nombre = "BunBuns";
+print $cachorro->nombre; // Devuelve: BunBuns
+```
+Por defecto todas las propiedades y funciones son public. No es necesario especificar public, pero es mejor hacerlo para que sea más legible. Con los métodos puedes no utilizar ninguna palabra y escribir directamente function. Con las propiedades en cambio necesitas una palabra por lo menos, sino da un error de sintaxis, ya que sino no hay manera de saber qué propiedades tiene una clase. Nunca hay que usar var, siempre un modificador.
+
+2. Private
+El problema de las propiedades y métodos public es que se permite llamar a los métodos y establecer las propiedades desde cualquier lado del script. En el ejemplo anterior, si en lugar de crear un objeto Bulldog, creamos un objeto Perro e intentamos establecer nombre, nos dará un fatal error: Cannot access private property.
+```
+class Perro
+{
+    private $nombre;
+    public function ladrar(){
+        print "Guau!";
+    }
+}
+$cachorro = new Perro();
+$cachorro->nombre = "BunBuns"; // Fatal error
+```
+No se podrá ni mostrar ni modificar el nombre. Para hacerlo se utilizan getters y setters, métodos public para poder acceder a estas propiedades y métodos private desde otras partes del script:
+```
+class Perro
+{
+    private $nombre;
+    public function ladrar(){
+        print "Guau!";
+    }
+    public function setNombre($nombre){
+        $this->nombre = $nombre;
+    }
+    public function getNombre(){
+        return $this->nombre;
+    }
+}
+$cachorro = new Perro();
+$cachorro->setNombre("Chicken");
+echo $cachorro->getNombre(); // Devuelve: Chicken
+```
+Sin embargo, si desde un objeto que es instancia de una clase heredada se intenta modificar el valor private, PHP lo que hace es crear una varable pública y una privada. Vamos a partir del ejemplo que hemos puesto en public, y cambiar la propiedad a private:
+```
+class Perro
+{
+    private $nombre;
+    private function ladrar(){
+        print "Guau!";
+    }
+}
+class Bulldog extends Perro {}
+$cachorro = new Bulldog();
+$cachorro->nombre = "BunBuns";
+var_dump($cachorro);
+/*
+Devuelve:
+object(Bulldog)[1]
+  private 'nombre' (Perro) => null
+  public 'nombre' => string 'BunBuns' (length=7)
+*/
+// Los métodos en cambio no se pueden usar:
+$cachorro->ladrar(); // Fatal error: Call to private method
+```
+Ahora hay dos variables, una privada que no se puede modificar y es null porque no se le ha asignado ningún valor, y otra public que crea PHP. Esto es algo confuso, por lo que lo mejor es evitar esta situación. Los métodos y propiedades privados sólo deben ser accedidos por la clase en la que se encuentran, las clases hijas no pueden acceder a ellos. Para ello se utiliza el modificador protected.
+
+3. Protected
+Las propiedades y métodos marcados como protected son accesibles a través de la clase donde se crean y sus descendientes:
+```
+class Perro
+{
+    protected $nombre;
+    protected function ladrar(){
+        print "Guau!";
+    }
+}
+class Bulldog extends Perro {
+    public function ladrarBulldog(){
+        // Podemos acceder a ladrar() de la clase Perro
+        return $this->ladrar();
+    }
+    public function setNombre($nombre){
+        $this->nombre = $nombre;
+    }
+    public function getNombre(){
+        print $this->nombre;
+    }
+}
+```
+Diferentes ejemplos de acceso a propiedades protected:
+```
+$cachorro = new Bulldog();
+// Podemos acceder a la función ladrar() desde ladrarBulldog():
+$cachorro->ladrarBulldog(); // Devuelve Guau!
+// No podemos acceder a ladrar() desde el objeto cachorro:
+$cachorro->ladrar(); // Fatal error: Call to protected method Perro::ladrar()
+// Tampoco podemos asignarle un nombre, pues $nombre también es protected
+$cachorro->nombre = "Hunky"; // Fatal Error: Cannot access protected property
+// Si podemos asignarle un valor con el método setNombre():
+$cachorro->setNombre("Hunky");
+// Y mostrarlo con getNombre():
+echo $cachorro->getNombre(); // Devuelve: Hunky
+```
