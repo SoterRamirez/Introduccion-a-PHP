@@ -542,3 +542,41 @@ class Coche {
 }
 ```
 De esta forma siempre que se instancie un objeto de la clase Coche, éste será de color rojo a no ser que se modifique después.
+
+# Constructores y Métodos
+
+El Método constructor nos permitirá inicializar valores default así como también pasar datos como parámetro.
+
+Todas las funciones que tienen __ antes del nombre de la función se conocen como métodos mágicos.
+
+**Uso de __construct():**
+- __construct se utiliza para la inserción de parametros y dependencias para construir el objeto. No necesita ser llamado ya que lo hace automaticamente cuando se crea un objeto.
+
+**Uso de __destruct():**
+- Al igual que __construct, __destruct se llama automaticamente al finalizar los procesos del objeto creado. se utiliza para eliminar referencia del objeto creado, el cual liberará la memoria utilizada al crear ese objeto. casi no se utiliza en programas pequeños. pero puede servir como por ejemplo cerrar la conexion a una base de datos al terminar de hacer un consulta. __destruct nunca se le debe pasar variables como parametros.
+
+**Uso de __get()**
+- __get() sirve para poder acceder a una variable, que no pueda ser accedida afuera de la clase(ya sea private o protected). para esto se tiene que pasar el nombre de la variable que se quiere acceder como argumento del metodo. Al igual que construct y destruct, no necesita ser llamada ya que lo hace automaticamente. Si intentamos acceder a la variable sin el uso del metodo magico __get, lanzará una excepción.
+
+**Uso de __set():**
+- __set que sirve ya sea para cambiar el valor de una propiedad que no es accesible afuera de la clase se tiene que pasar por medio del argumento del metodo la propiedad a acceder y el valor nuevo que desea cambiar. Igual sirve para crear nuevas propiedades de la clase
+
+- NOTA: El uso de estos `__get() y __set()` por ser lentos lentos, no facilitan el autocompletado de código en los IDE, hacen que el mantenimiento y refactorizar sea más largo y complicado. En su lugar se pueden emplear getters y setters.
+
+**Uso de __isset():**
+- Con __isset() se verifica la existencia de una propiedad o array. se lanza al llamar a isset() o a empty() sobre propiedades inaccesibles.
+
+**Uso de __unset():**
+- Con __unset() se elimina una propiedad de la clase. dicho en otras palabras, se invoca cuando se usa unset() sobre propiedades inaccesibles…
+
+**Uso de __sleep():**
+- El método sleep sera invocado cuando pasemos el objeto por la función serialize, de esta forma podremos prepararlo para ser almacenado o para lo que queramos, como siempre el limite es la imaginación de cada cual y los posibles usos que se le pueden dar a esto son muchísimos. Hay que tener en cuenta que siempre ha de devolver un array, es preferible no usar sleep a hacer un return que no sea un array porque php dará un error.
+
+**Uso de __wakeup():**
+- El método wakeup se encarga de realizar exactamente lo contrario que sleep, en el momento que deserializamos un objeto con unserialize se invoca a este método, para por ejemplo, restablecer la conexión con la base de datos, o alterar algún atributo.
+
+**Uso de __call():**
+- Se utiliza el método mágico __call() para llamar una función que sea inaccesible afuera de la clase
+
+**Uso de __callStatic():**
+- Si el método al que se quiere llamar es static se puede emplear __callStatic(). Este método funciona de la misma forma que __call() pero la sintaxis con la que llamar a los métodos será como a los métodos estáticos.
